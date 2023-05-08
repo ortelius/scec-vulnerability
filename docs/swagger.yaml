@@ -1,0 +1,53 @@
+basePath: /msapi/domain
+host: localhost:3000
+info:
+  contact:
+    email: ortelius-dev@googlegroups.com
+    name: Ortelius Google Group
+  description: RestAPI for the Domain Object
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Ortelius v11 Domain Microservice
+  version: 11.0.0
+paths:
+  /msapi/domain:
+    get:
+      consumes:
+        - "*/*"
+      description: Get a list of domains for the user.
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get a List of Domains
+      tags:
+        - domain
+    post:
+      consumes:
+        - application/json
+      description: Create a new Domain and persist it
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create a Domain
+      tags:
+        - domain
+  /msapi/domain/:key:
+    get:
+      consumes:
+        - "*/*"
+      description: Get a domain based on the _key or name.
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get a Domain
+      tags:
+        - domain
+swagger: "2.0"
