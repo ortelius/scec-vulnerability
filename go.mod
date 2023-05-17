@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/arangodb/go-driver v1.5.2
-	github.com/gofiber/fiber/v2 v2.44.0
+	github.com/gofiber/fiber/v2 v2.45.0
 	github.com/ortelius/scec-commons v0.1.4
 	github.com/swaggo/swag v1.16.1
 )
@@ -50,10 +50,10 @@ require (
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/tinylib/msgp v1.1.8 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.46.0 // indirect
+	github.com/valyala/fasthttp v1.47.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/crypto v0.8.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/tools v0.8.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/blake3 v1.1.7 // indirect
