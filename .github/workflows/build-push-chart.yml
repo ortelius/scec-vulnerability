@@ -188,7 +188,7 @@ jobs:
           egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
 
       - name: SBOM
-        uses: ortelius/ms-sbom-action@v1.0.0
+        uses: ortelius/ms-sbom-action@78faa3aadef42708432a337fa2953a82ddfd2512 # v1.0.0
         with:
           dhpass: ${{ secrets.DHPASS }}
           dhurl: ${{ needs.setenv.outputs.dhurl }}
@@ -198,6 +198,6 @@ jobs:
           git_branch: ${{ needs.setenv.outputs.branch }}
           image_digest: ${{ needs.release.outputs.digest }}
           image_repo_tag: ${{ needs.setenv.outputs.image_repo_tag }}
-          image_repo: ${{ needs.setenv.outputs.image_repository }}
+          image_repository: ${{ needs.setenv.outputs.image_repository }}
           image_tag: ${{ needs.setenv.outputs.image_tag }}
           image_version: ${{ needs.setenv.outputs.image_version }}
