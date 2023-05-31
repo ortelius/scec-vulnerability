@@ -16,25 +16,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { include "microservice.name" . } }
+  name: {{ include "microservice.name" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: { { include "microservice.name" . } }
+      app: {{ include "microservice.name" . }}
       tier: backend
       track: stable
   template:
     metadata:
       labels:
-        app: { { include "microservice.name" . } }
+        app: {{ include "microservice.name" . }}
         tier: backend
         track: stable
     spec:
       nodeSelector:
         kubernetes.io/os: linux
       containers:
-        - name: { { include "microservice.name" . } }
+        - name: {{ include "microservice.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: Always
           env:
