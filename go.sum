@@ -83,8 +83,8 @@ github.com/multiformats/go-multihash v0.2.2/go.mod h1:dXgKXCXjBzdscBLk9JkjINiEsC
 github.com/multiformats/go-varint v0.0.7 h1:sWSGR+f/eu5ABZA2ZpYKBILXTTs9JWpdEM/nEGOHFS8=
 github.com/multiformats/go-varint v0.0.7/go.mod h1:r8PUYw/fD/SjBCiKOoDlGF6QawOELpZAu9eioSos/OU=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
-github.com/ortelius/scec-commons v0.1.7 h1:zIQMtoPdHsIuis9hAvSkov0/Zza7URsAnO3zwNhS4k4=
-github.com/ortelius/scec-commons v0.1.7/go.mod h1:Pr6cRO0d6dk2MfElnLjpVJHmATAqx2ObWY/8eNI7g+c=
+github.com/ortelius/scec-commons v0.1.8 h1:diKnAaj3OjVADYmu4w40rQb7aQl1EQ8CMPVYr0b/UOA=
+github.com/ortelius/scec-commons v0.1.8/go.mod h1:Pr6cRO0d6dk2MfElnLjpVJHmATAqx2ObWY/8eNI7g+c=
 github.com/philhofer/fwd v1.1.1/go.mod h1:gk3iGcWd9+svBvR0sR+KPcfE+RNWozjowpeBVG3ZVNU=
 github.com/philhofer/fwd v1.1.2/go.mod h1:qkPdfjR2SIEbspLqpe1tO4n5yICnr2DY7mqEx2tUTP0=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
