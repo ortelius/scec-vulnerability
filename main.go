@@ -3,6 +3,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 
 	_ "cli/docs"
 
@@ -101,9 +102,11 @@ func GetDomain(c *fiber.Ctx) error {
 		logger.Sugar().Infof("Got doc with key '%s' from query\n", meta.Key)
 
 	} else { // not found so get from NFT Storage
-		key, cid2json := database.FetchFromLTS(key) // Use the CID to get the JSON from nft.storage
-		domain.Key = key                            // set the key for unmarshaling
-		domain.UnmarshalNFT(cid2json)               // convert the JSON to the domain object
+		if jsonStr, exists := database.MakeJSON(key); exists {
+			if err := json.Unmarshal([]byte(jsonStr), &domain); err != nil { // convert the JSON string from LTF into the object
+				logger.Sugar().Errorf("Failed to unmarshal from LTS: %v", err)
+			}
+		}
 	}
 
 	return c.JSON(domain) // return the domain in JSON format
@@ -128,18 +131,15 @@ func NewDomain(c *fiber.Ctx) error {
 		return c.Status(503).Send([]byte(err.Error()))
 	}
 
-	cid2json := make(map[string]string, 0) // create a map for normalizing the domain object into CIDs + JSON strings
-	nft := domain.MarshalNFT(cid2json)     // convert the domain object into a JSON for nft.storage
+	cid, dbStr := database.MakeNFT(&domain) // normalize the object into NFTs and JSON string for db persistence
 
-	logger.Sugar().Infof("%+v\n", nft) // log the new nft
+	logger.Sugar().Infof("%s=%s\n", cid, dbStr) // log the new nft
 
 	// add the domain to the database.  Ignore if it already exists since it will be identical
 	if meta, err = dbconn.Collection.CreateDocument(ctx, domain); err != nil && !driver.IsConflict(err) {
 		logger.Sugar().Errorf("Failed to create document: %v", err)
 	}
 	logger.Sugar().Infof("Created document in collection '%s' in db '%s' key='%s'\n", dbconn.Collection.Name(), dbconn.Database.Name(), meta.Key)
-
-	database.PersistOnLTS(cid2json) // save the nft JSON version of the domain object to ntf.storage
 
 	return c.JSON(domain) // return the domain object in JSON format.  This includes the new _key
 }
