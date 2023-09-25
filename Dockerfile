@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go@sha256:c87a8cf30c9a4e58df04712e1bb0b98d8d0421cc924e88f6fca4a6fabf45c6b4 AS builder
+FROM cgr.dev/chainguard/go@sha256:3dfe24aeddaceb07a93513cad9afc89e0b2d34b7c8fd5cba6e3dc7618adcf822 AS builder
 
 WORKDIR /app
 COPY . /app
@@ -8,7 +8,7 @@ RUN go install github.com/swaggo/swag/cmd/swag@latest; \
     go mod tidy; \
     go build -o main .
 
-FROM cgr.dev/chainguard/glibc-dynamic@sha256:85d814d0b8684622d0da580ccd9cb2fbbcc9962b480dd1fb948d3462d18d3847
+FROM cgr.dev/chainguard/glibc-dynamic@sha256:f3b9f809336da19d31c28a0bd2344b09ce0545ddccac8fa19422d525c4bb2fb9
 
 WORKDIR /app
 
