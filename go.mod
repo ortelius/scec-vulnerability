@@ -5,16 +5,17 @@ go 1.20
 require (
 	github.com/arangodb/go-driver v1.6.0
 	github.com/gofiber/fiber/v2 v2.49.2
-	github.com/ortelius/scec-commons v0.1.11
+	github.com/ortelius/scec-commons v0.1.15
 	github.com/swaggo/swag v1.16.2
 )
 
 require (
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
+	github.com/sanity-io/litter v1.5.5 // indirect
 	github.com/swaggo/files/v2 v2.0.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	go.uber.org/zap v1.25.0 // indirect
-	golang.org/x/text v0.12.0 // indirect
+	go.uber.org/zap v1.26.0 // indirect
+	golang.org/x/text v0.13.0 // indirect
 )
 
 require (
