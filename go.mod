@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/arangodb/go-driver v1.6.0
 	github.com/gofiber/fiber/v2 v2.50.0
-	github.com/ortelius/scec-commons v0.1.20
+	github.com/ortelius/scec-commons v0.1.21
 	github.com/swaggo/swag v1.16.2
 )
 
