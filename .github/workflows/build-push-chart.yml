@@ -17,7 +17,7 @@ permissions: read-all
 
 jobs:
   setenv:
-    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@c1c97b21aaf52a380e1dd2928a28985cd011e681
+    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@d632777f765a164e39741f9e7b153c132f474dde
     with:
       gh_head_ref: ${{ github.head_ref }}
       gh_ref_name: ${{ github.ref_name }}
@@ -27,7 +27,7 @@ jobs:
       gh_run_number: ${{ github.run_number }}
 
   release:
-    uses: ortelius/workflow-toolkit/.github/workflows/container-release-workflow.yml@c1c97b21aaf52a380e1dd2928a28985cd011e681
+    uses: ortelius/workflow-toolkit/.github/workflows/container-release-workflow.yml@d632777f765a164e39741f9e7b153c132f474dde
     needs: setenv
     with:
       gh_repository_owner: ${{ github.repository_owner }}
@@ -43,7 +43,7 @@ jobs:
     permissions:
       security-events: write
       statuses: write
-    uses: ortelius/workflow-toolkit/.github/workflows/trivy-scan-workflow.yml@c1c97b21aaf52a380e1dd2928a28985cd011e681
+    uses: ortelius/workflow-toolkit/.github/workflows/trivy-scan-workflow.yml@d632777f765a164e39741f9e7b153c132f474dde
     needs: [setenv, release]
     with:
       gh_repository_owner: ${{ github.repository_owner }}
@@ -54,7 +54,7 @@ jobs:
   helm:
     permissions:
       contents: write
-    uses: ortelius/workflow-toolkit/.github/workflows/helm-release-workflow.yml@c1c97b21aaf52a380e1dd2928a28985cd011e681
+    uses: ortelius/workflow-toolkit/.github/workflows/helm-release-workflow.yml@d632777f765a164e39741f9e7b153c132f474dde
     needs: [setenv, release]
     with:
       gh_repository_owner: ${{ github.repository_owner }}
@@ -73,7 +73,7 @@ jobs:
       gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
 
   sbom:
-    uses: ortelius/workflow-toolkit/.github/workflows/sbom-generation-workflow.yml@c1c97b21aaf52a380e1dd2928a28985cd011e681
+    uses: ortelius/workflow-toolkit/.github/workflows/sbom-generation-workflow.yml@d632777f765a164e39741f9e7b153c132f474dde
     needs: [setenv, release]
     with:
       gh_repository_owner: ${{ github.repository_owner }}
