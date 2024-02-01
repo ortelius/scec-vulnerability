@@ -13,7 +13,7 @@ name: Build/Push Image and Release Charts
 permissions: read-all
 jobs:
   setenv:
-    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@f414c8dc2c8ab29ea73f9d215d5c9da899468ffe
+    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@0618985d0739d86046ffa4734f546dba79e4efc6
     with:
       gh_head_ref: ${{ github.head_ref }}
       gh_ref_name: ${{ github.ref_name }}
@@ -22,7 +22,7 @@ jobs:
       gh_repo: ${{ github.repository }}
       gh_run_number: ${{ github.run_number }}
   release:
-    uses: ortelius/workflow-toolkit/.github/workflows/container-release-workflow.yml@f414c8dc2c8ab29ea73f9d215d5c9da899468ffe
+    uses: ortelius/workflow-toolkit/.github/workflows/container-release-workflow.yml@0618985d0739d86046ffa4734f546dba79e4efc6
     needs: setenv
     with:
       gh_repository_owner: ${{ github.repository_owner }}
@@ -39,7 +39,7 @@ jobs:
     permissions:
       security-events: write
       statuses: write
-    uses: ortelius/workflow-toolkit/.github/workflows/trivy-scan-workflow.yml@f414c8dc2c8ab29ea73f9d215d5c9da899468ffe
+    uses: ortelius/workflow-toolkit/.github/workflows/trivy-scan-workflow.yml@0618985d0739d86046ffa4734f546dba79e4efc6
     needs:
       - setenv
       - release
@@ -51,7 +51,7 @@ jobs:
   helm:
     permissions:
       contents: write
-    uses: ortelius/workflow-toolkit/.github/workflows/helm-release-workflow.yml@f414c8dc2c8ab29ea73f9d215d5c9da899468ffe
+    uses: ortelius/workflow-toolkit/.github/workflows/helm-release-workflow.yml@0618985d0739d86046ffa4734f546dba79e4efc6
     needs:
       - setenv
       - release
@@ -71,7 +71,7 @@ jobs:
       GPG_KEY: ${{ secrets.GPG_KEY }}
       gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
   sbom:
-    uses: ortelius/workflow-toolkit/.github/workflows/sbom-generation-workflow.yml@f414c8dc2c8ab29ea73f9d215d5c9da899468ffe
+    uses: ortelius/workflow-toolkit/.github/workflows/sbom-generation-workflow.yml@0618985d0739d86046ffa4734f546dba79e4efc6
     needs:
       - setenv
       - release
