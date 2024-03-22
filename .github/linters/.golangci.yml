@@ -22,6 +22,7 @@ linters-settings:
     ignore-words:
       - cancelled
 
-max-issues-per-linter: 0
-max-same-issues: 0
-fix: true
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  fix: true
