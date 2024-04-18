@@ -4,12 +4,14 @@ name: Build/Push Image and Release Charts
     paths-ignore:
       - chart/**/Chart.yaml
       - chart/**/values.yaml
+      - README.md
   push:
     branches:
       - main
     paths-ignore:
       - chart/**/Chart.yaml
       - chart/**/values.yaml
+      - README.md
 permissions: read-all
 jobs:
   setenv:
