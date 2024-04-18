@@ -15,7 +15,7 @@ name: Build/Push Image and Release Charts
 permissions: read-all
 jobs:
   setenv:
-    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@d59857ef63c91e673bc471a94ec880698cc969d3
+    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@629d175479d9f6dff69f88c57a011941292e2066
     with:
       gh_head_ref: ${{ github.head_ref }}
       gh_ref_name: ${{ github.ref_name }}
@@ -24,24 +24,27 @@ jobs:
       gh_repo: ${{ github.repository }}
       gh_run_number: ${{ github.run_number }}
   release:
-    uses: ortelius/workflow-toolkit/.github/workflows/container-release-workflow.yml@d59857ef63c91e673bc471a94ec880698cc969d3
+    permissions:
+      id-token: write
+      contents: write
+    uses: ortelius/workflow-toolkit/.github/workflows/container-release-workflow.yml@629d175479d9f6dff69f88c57a011941292e2066
     needs: setenv
     with:
       gh_repository_owner: ${{ github.repository_owner }}
       gh_event_name: ${{ github.event_name }}
       gh_ref: ${{ github.ref }}
+      gh_handle: ${{ needs.setenv.outputs.gh_handle }}
       registry: ${{ needs.setenv.outputs.registry }}
       image_repo_tag: ${{ needs.setenv.outputs.image_repo_tag }}
     secrets:
       QUAY_USERID: ${{ secrets.QUAY_USERID }}
       QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
-    permissions:
-      id-token: write
+      gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
   trivy:
     permissions:
       security-events: write
       statuses: write
-    uses: ortelius/workflow-toolkit/.github/workflows/trivy-scan-workflow.yml@d59857ef63c91e673bc471a94ec880698cc969d3
+    uses: ortelius/workflow-toolkit/.github/workflows/trivy-scan-workflow.yml@629d175479d9f6dff69f88c57a011941292e2066
     needs:
       - setenv
       - release
@@ -53,7 +56,7 @@ jobs:
   helm:
     permissions:
       contents: write
-    uses: ortelius/workflow-toolkit/.github/workflows/helm-release-workflow.yml@d59857ef63c91e673bc471a94ec880698cc969d3
+    uses: ortelius/workflow-toolkit/.github/workflows/helm-release-workflow.yml@629d175479d9f6dff69f88c57a011941292e2066
     needs:
       - setenv
       - release
@@ -73,7 +76,7 @@ jobs:
       GPG_KEY: ${{ secrets.GPG_KEY }}
       gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
   sbom:
-    uses: ortelius/workflow-toolkit/.github/workflows/sbom-generation-workflow.yml@d59857ef63c91e673bc471a94ec880698cc969d3
+    uses: ortelius/workflow-toolkit/.github/workflows/sbom-generation-workflow.yml@629d175479d9f6dff69f88c57a011941292e2066
     needs:
       - setenv
       - release
