@@ -20,7 +20,6 @@ DISABLE:
 
 GO_GOLANGCI_LINT_CLI_LINT_MODE: project
 GO_GOLANGCI_LINT_ARGUMENTS: --timeout 10m
-
 PRE_COMMANDS:
   [
     "command": "wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz",
