@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go@sha256:4d51574ef33b4edc57a22da062fe335a500eda30a1f1315cb39b4977bf2aef5f AS builder
+FROM cgr.dev/chainguard/go@sha256:6011c1778c16972f52b9c840bf668b23973e5cdfa5ad09ce24af6c76673bc492 AS builder
 
 WORKDIR /app
 COPY . /app
@@ -6,7 +6,7 @@ COPY . /app
 RUN go mod tidy; \
     go build -o main .
 
-FROM cgr.dev/chainguard/glibc-dynamic@sha256:6dff3d81e2edaa0ef48ea87b808c34c4b24959169d9ad317333bdda4ec3c4002
+FROM cgr.dev/chainguard/glibc-dynamic@sha256:663e3dd9d4c09141cc0a8a534662bc286318ad9102e9824121d97b332627713b
 
 WORKDIR /app
 
