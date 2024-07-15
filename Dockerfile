@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go@sha256:da9f3e9fabb8fca3003cebbc2bff177e919b949307f5278efaaa26dd0639bcc3 AS builder
+FROM cgr.dev/chainguard/go@sha256:2aab312eba021f07c6adf80abe4cb3c34bace048157e3271a2e41991658562ce AS builder
 
 WORKDIR /app
 COPY . /app
