@@ -19,6 +19,11 @@
       "matchPackagePatterns": [".*"],
       "automerge": true,
       "autoApprove": true
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchPackagePatterns": ["^go", "^toolchain"],
+      "enabled": false
     }
   ],
   "separateMajorMinor": false,
